@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Nakshu — 2 Years ✨</title>
+  <style>
+    :root{
+      --bg1:#ff4f77;
+      --bg2:#ff8fb4;
+      --glass: rgba(255,255,255,.16);
+      --glass2: rgba(255,255,255,.10);
+      --border: rgba(255,255,255,.18);
+      --txt: rgba(255,255,255,.95);
+      --shadow: 0 20px 70px rgba(0,0,0,.25);
+    }
+    *{ box-sizing:border-box; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
+    body{
+      margin:0; min-height:100vh; color:var(--txt);
+      background:
+        radial-gradient(1200px 900px at 15% 12%, rgba(255,255,255,.18), transparent 60%),
+        radial-gradient(900px 700px at 80% 20%, rgba(255,255,255,.12), transparent 58%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* floating sparkles/hearts (subtle) */
+    .float{
+      position:fixed; bottom:-40px; left:0;
+      font-size:18px; opacity:.75;
+      animation: rise linear forwards;
+      filter: drop-shadow(0 10px 10px rgba(0,0,0,.10));
+      pointer-events:none;
+      z-index: 1;
+    }
+    @keyframes rise{
+      to{ transform: translateY(-120vh) translateX(var(--drift)); opacity:0; }
+    }
+
+    .wrap{
+      position:relative; z-index:2;
+      max-width:560px; margin:0 auto;
+      min-height:100vh;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:14px;
+    }
+    .card{
+      background: var(--glass);
+      border:1px solid var(--border);
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .hidden{ display:none !important; }
+
+    .row{ display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      background: rgba(0,0,0,.12);
+      border:1px solid rgba(255,255,255,.14);
+      padding: 8px 12px;
+      border-radius:999px;
+      font-size:.92rem;
+      opacity:.98;
+    }
+    h1{
+      margin: 8px 0 8px;
+      font-size: 2.0rem;
+      line-height:1.08;
+      letter-spacing:.2px;
+    }
+    h2{
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      letter-spacing:.2px;
+    }
+    p{
+      margin:0;
+      opacity:.95;
+      line-height:1.55;
+      font-size:1.03rem;
+    }
+
+    .btn{
+      width:100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.18);
+      color:white;
+      font-size:1.05rem;
+      font-weight: 700;
+      letter-spacing:.2px;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: 0 14px 28px rgba(0,0,0,.16);
+      transition: transform .12s ease, background .2s ease;
+    }
+    .btn:active{ transform: scale(.985); }
+    .btn.primary{ background: rgba(255,255,255,.24); }
+    .btn.dark{ background: rgba(0,0,0,.18); }
+    .btn.small{ width:auto; padding:10px 12px; border-radius: 14px; font-size:.95rem; }
+
+    /* Envelope */
+    .envelope{
+      margin-top: 12px;
+      width:100%;
+      aspect-ratio: 16/10;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.24), rgba(255,255,255,.10));
+      overflow:hidden;
+      position:relative;
+      box-shadow: 0 16px 44px rgba(0,0,0,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .seal{
+      width: 98px; height: 98px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.45), rgba(255,255,255,.18));
+      border:1px solid rgba(255,255,255,.22);
+      display:flex; align-items:center; justify-content:center;
+      font-size: 2rem;
+      transform: rotate(-6deg);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ transform: rotate(-6deg) scale(1); }
+      50%{ transform: rotate(-6deg) scale(1.06); }
+    }
+    .hint{
+      position:absolute;
+      bottom: 12px; left: 12px; right: 12px;
+      text-align:center;
+      opacity:.92;
+      font-size: .98rem;
+    }
+    .shake{
+      animation: shake .22s ease-in-out 2;
+    }
+    @keyframes shake{
+      0%{ transform: translateX(0); }
+      25%{ transform: translateX(-6px); }
+      50%{ transform: translateX(6px); }
+      75%{ transform: translateX(-4px); }
+      100%{ transform: translateX(0); }
+    }
+
+    /* Sections */
+    .section{
+      background: rgba(0,0,0,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 20px;
+      padding: 14px;
+    }
+    .split{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    /* “Story choices” */
+    .choiceGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    /* Timeline */
+    .tiles{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .tile{
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .12s ease;
+    }
+    .tile:active{ transform: scale(.99); }
+    .tileTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .tileTitle{ font-weight: 800; opacity:.98; }
+    .tileBadge{ font-size:.92rem; opacity:.92; }
+    .tileBody{
+      margin-top: 8px;
+      opacity:.92;
+      line-height:1.55;
+      display:none;
+    }
+    .tile.open .tileBody{ display:block; }
+    .tile.open{ background: rgba(255,255,255,.14); }
+
+    /* Notes generator */
+    .noteBox{
+      margin-top: 10px;
+      min-height: 74px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      padding: 12px;
+      line-height:1.55;
+      opacity:.98;
+    }
+
+    /* Reasons list (editable + saved) */
+    .inputRow{
+      display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;
+    }
+    input{
+      flex:1;
+      min-width: 180px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(0,0,0,.12);
+      color: white;
+      outline:none;
+      font-size: 1rem;
+    }
+    input::placeholder{ color: rgba(255,255,255,.75); }
+
+    .list{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .item{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      padding: 12px;
+    }
+    .itemText{ line-height:1.45; opacity:.98; }
+    .x{
+      border:none;
+      background: rgba(0,0,0,.18);
+      color:white;
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    /* Heart meter */
+    .bar{
+      height: 14px;
+      width:100%;
+      border-radius:999px;
+      background: rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.16);
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .fill{
+      height:100%;
+      width:0%;
+      background: rgba(255,255,255,.78);
+      transition: width .18s ease;
+    }
+    .heartPad{
+      margin-top: 12px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .tap{
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 1.7rem;
+      box-shadow: 0 12px 22px rgba(0,0,0,.16);
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .12s ease;
+    }
+    .tap:active{ transform: scale(.97); }
+    .meterMsg{
+      margin-top:10px;
+      text-align:center;
+      opacity:.95;
+    }
+
+    /* Confetti canvas */
+    #confetti{
+      position: fixed;
+      inset: 0;
+      z-index: 3;
+      pointer-events:none;
+      display:none;
+    }
+
+    .footer{
+      text-align:center;
+      opacity:.92;
+      font-size:.95rem;
+      line-height:1.45;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+
+  <div class="wrap">
+
+    <!-- START -->
+    <div class="card" id="start">
+      <div class="row">
+        <span class="pill">✨ Our 2 Year Anniversary</span>
+        <span class="pill" id="todayPill">📅 Today: ...</span>
+      </div>
+
+      <h1>Nakshu ❤️</h1>
+      <p>
+        I made you a tiny interactive world for our anniversary.
+        Tap the envelope. (And yes, I built this just for you.)
+      </p>
+
+      <div class="envelope" id="env" onclick="unlock()">
+        <div class="seal">💌</div>
+        <div class="hint">Tap to open your surprise</div>
+      </div>
+
+      <button class="btn dark" style="margin-top:14px;" onclick="tinySecret()">
+        Psst… tap here for a tiny secret 🤫
+      </button>
+      <p id="secret" style="margin-top:10px; display:none;"></p>
+    </div>
+
+    <!-- MAIN -->
+    <div class="card hidden" id="main">
+      <div class="row">
+        <span class="pill">🗓️ Two Years • Us</span>
+        <button class="btn small dark" onclick="restart()">↺ Restart</button>
+      </div>
+
+      <h1 style="margin-top:10px;">Welcome, Nakshu ✨</h1>
+      <p>
+        Pick a vibe… and I’ll tell our story that way.
+      </p>
+
+      <div class="section" style="margin-top:12px;">
+        <h2>🧭 Choose Our Anniversary Vibe</h2>
+        <div class="choiceGrid">
+          <button class="btn primary" onclick="setVibe('soft')">Soft & Romantic 💗</button>
+          <button class="btn primary" onclick="setVibe('funny')">Funny & Chaotic 😂</button>
+          <button class="btn primary" onclick="setVibe('deep')">Deep & Emotional 🕯️</button>
+        </div>
+        <div class="noteBox" id="vibeBox" style="margin-top:12px;">
+          (Choose one above…)
+        </div>
+      </div>
+
+      <div style="height:12px;"></div>
+
+      <!-- Timeline -->
+      <div class="section">
+        <div class="row">
+          <h2 style="margin:0;">🕰️ Memory Doors</h2>
+          <span class="pill">tap to open</span>
+        </div>
+        <p style="margin-top:8px;">
+          Each door is a promise: I’m still choosing you.
+        </p>
+
+        <div class="tiles" id="tiles"></div>
+      </div>
+
+      <div style="height:12px;"></div>
+
+      <!-- Gift note generator -->
+      <div class="section">
+        <div class="row">
+          <h2 style="margin:0;">🎁 A Gift That Never Runs Out</h2>
+          <span class="pill">random notes</span>
+        </div>
+        <p style="margin-top:8px;">Tap to generate a fresh message from me to you.</p>
+        <button class="btn primary" style="margin-top:10px;" onclick="newNote()">Open a new note 💝</button>
+        <div class="noteBox" id="noteBox">(Your note appears here.)</div>
+      </div>
+
+      <div style="height:12px;"></div>
+
+      <!-- Reasons list (saved on her phone) -->
+      <div class="section">
+        <div class="row">
+          <h2 style="margin:0;">📝 Reasons I Love You</h2>
+          <span class="pill">saved on your phone</span>
+        </div>
+        <p style="margin-top:8px;">
+          Add any reason you want. It stays here (even if you close the page).
+        </p>
+
+        <div class="inputRow">
+          <input id="reasonInput" placeholder="Type a reason… (ex: your laugh, your care)" />
+          <button class="btn small primary" onclick="addReason()">Add ➕</button>
+        </div>
+
+        <div class="list" id="reasonList"></div>
+
+        <button class="btn dark" style="margin-top:10px;" onclick="addPreset()">
+          Add “husband-made” reasons 😌
+        </button>
+      </div>
+
+      <div style="height:12px;"></div>
+
+      <!-- Heart meter -->
+      <div class="section">
+        <div class="row">
+          <h2 style="margin:0;">💖 Promise Meter</h2>
+          <span class="pill">tap hearts</span>
+        </div>
+        <p style="margin-top:8px;">
+          Fill this up to unlock your Anniversary Certificate.
+        </p>
+
+        <div class="bar"><div class="fill" id="fill"></div></div>
+
+        <div class="heartPad">
+          <div class="tap" onclick="tapHeart()">❤️</div>
+          <div class="tap" onclick="tapHeart()">💖</div>
+          <div class="tap" onclick="tapHeart()">💘</div>
+          <div class="tap" onclick="tapHeart()">💕</div>
+        </div>
+
+        <div class="meterMsg" id="meterMsg">Currently: 0% (start tapping 👀)</div>
+
+        <div id="certificate" class="section hidden" style="margin-top:12px; background:rgba(255,255,255,.14);">
+          <h2>🎖️ Anniversary Certificate</h2>
+          <p>
+            This certifies that <b>Nakshu</b> is officially and permanently
+            my favorite person — for all seasons, all moods, and all years.
+          </p>
+          <p style="margin-top:10px;">
+            Signed: <b>Your Husband</b> ✍️<br/>
+            Date: <span id="certDate"></span>
+          </p>
+          <button class="btn primary" style="margin-top:12px;" onclick="confettiBoom()">
+            Tap to celebrate 🎊
+          </button>
+        </div>
+      </div>
+
+      <div style="height:12px;"></div>
+
+      <div class="footer">
+        If you ever feel low, open this page again.<br/>
+        It’ll remind you: you’re loved — loudly, softly, and forever.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ---- date pill
+    const today = new Date();
+    const todayNice = today.toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' });
+    document.getElementById("todayPill").textContent = "📅 Today: " + todayNice;
+    document.getElementById("certDate").textContent = todayNice;
+
+    // ---- subtle floating
+    const floats = ["❤️","✨","💖","💘","💕","⭐"];
+    setInterval(()=>{
+      const f = document.createElement("div");
+      f.className = "float";
+      f.textContent = floats[Math.floor(Math.random()*floats.length)];
+      f.style.left = Math.random()*100 + "vw";
+      f.style.setProperty("--drift", (Math.random()*80 - 40) + "px");
+      const dur = 5 + Math.random()*4;
+      f.style.animationDuration = dur + "s";
+      f.style.fontSize = (14 + Math.random()*20) + "px";
+      document.body.appendChild(f);
+      setTimeout(()=>f.remove(), dur*1000);
+    }, 320);
+
+    // ---- screens
+    const start = document.getElementById("start");
+    const main = document.getElementById("main");
+    const env = document.getElementById("env");
+
+    function unlock(){
+      // tiny dramatic shake
+      env.classList.add("shake");
+      setTimeout(()=>env.classList.remove("shake"), 500);
+
+      // transition
+      start.classList.add("hidden");
+      main.classList.remove("hidden");
+      initTiles();
+      loadReasons();
+      newNote();
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    function restart(){
+      localStorage.removeItem("nakshu_reasons");
+      localStorage.removeItem("nakshu_vibe");
+      localStorage.removeItem("nakshu_meter");
+      location.reload();
+    }
+
+    // ---- secret line
+    function tinySecret(){
+      const el = document.getElementById("secret");
+      el.style.display = "block";
+      el.textContent = "Secret: I still get that ‘wow… that’s my wife’ feeling. Every time.";
+    }
+
+    // ---- vibe (choice-based personalization)
+    const vibeBox = document.getElementById("vibeBox");
+    function setVibe(v){
+      localStorage.setItem("nakshu_vibe", v);
+
+      if(v === "soft"){
+        vibeBox.textContent =
+          "Soft & Romantic 💗: Nakshu, you feel like home. Two years in, and I still want to hold your hand in every version of life.";
+      }
+      if(v === "funny"){
+        vibeBox.textContent =
+          "Funny & Chaotic 😂: Nakshu, you’re my favorite plot twist. Two years of us… and I still laugh at the way you make everything better.";
+      }
+      if(v === "deep"){
+        vibeBox.textContent =
+          "Deep & Emotional 🕯️: Nakshu, you changed the way I understand love. You didn’t just enter my life— you reshaped it into something softer and brighter.";
+      }
+
+      // also slightly tweak background mood
+      if(v === "soft"){ document.documentElement.style.setProperty("--bg1","#ff4f77"); document.documentElement.style.setProperty("--bg2","#ff9bc2"); }
+      if(v === "funny"){ document.documentElement.style.setProperty("--bg1","#ff3f6f"); document.documentElement.style.setProperty("--bg2","#ff7fb0"); }
+      if(v === "deep"){ document.documentElement.style.setProperty("--bg1","#ff3d6a"); document.documentElement.style.setProperty("--bg2","#ff8aa8"); }
+    }
+
+    // restore vibe
+    const savedVibe = localStorage.getItem("nakshu_vibe");
+    if(savedVibe) setVibe(savedVibe);
+
+    // ---- timeline tiles
+    const tilesEl = document.getElementById("tiles");
+    const tiles = [
+      { t:"Door 1 — The Beginning", b:"Two years ago, the world quietly changed for me… because you were in it." },
+      { t:"Door 2 — The Comfort", b:"You became my calm. Even on loud days, you feel like peace." },
+      { t:"Door 3 — The Laughs", b:"I love the way you turn normal moments into memories without trying." },
+      { t:"Door 4 — The Choice", b:"I choose you on easy days and hard days. That’s not romance — that’s real." },
+      { t:"Door 5 — The Future", b:"We’re not ‘done.’ We’re just getting started. I’m excited for our next chapters." }
+    ];
+
+    function initTiles(){
+      tilesEl.innerHTML = "";
+      tiles.forEach((x, i)=>{
+        const div = document.createElement("div");
+        div.className = "tile";
+        div.innerHTML = `
+          <div class="tileTop">
+            <div class="tileTitle">${x.t}</div>
+            <div class="tileBadge">tap</div>
+          </div>
+          <div class="tileBody">${x.b}</div>
+        `;
+        div.addEventListener("click", ()=>{
+          div.classList.toggle("open");
+          // open one at a time (feels cleaner)
+          [...tilesEl.children].forEach((sib)=>{ if(sib!==div) sib.classList.remove("open"); });
+        });
+        tilesEl.appendChild(div);
+      });
+    }
+
+    // ---- gift note generator
+    const notes = [
+      "Nakshu, you are my favorite human. It’s not even close. 💖",
+      "Two years with you and I still get that ‘I can’t believe I get to love you’ feeling. ❤️",
+      "If my day is heavy, you make it lighter— just by existing. ✨",
+      "I love the way you care. It’s quiet, real, and unforgettable. 💕",
+      "I don’t need perfect days. I just want you in my days. 💘",
+      "I’m proud of us. The love, the growth, the patience… all of it. 🗓️❤️",
+      "You are the best part of my life’s story. And I’m still reading every page. 📖💗"
+    ];
+    const noteBox = document.getElementById("noteBox");
+    function newNote(){
+      const pick = notes[Math.floor(Math.random()*notes.length)];
+      noteBox.textContent = pick;
+      noteBox.animate([{transform:"scale(.98)"},{transform:"scale(1)"}], {duration:170, easing:"ease-out"});
+    }
+
+    // ---- reasons list (saved on phone)
+    const reasonInput = document.getElementById("reasonInput");
+    const reasonList = document.getElementById("reasonList");
+
+    function getReasons(){
+      try{ return JSON.parse(localStorage.getItem("nakshu_reasons") || "[]"); }
+      catch{ return []; }
+    }
+    function setReasons(arr){
+      localStorage.setItem("nakshu_reasons", JSON.stringify(arr));
+    }
+
+    function renderReasons(){
+      const arr = getReasons();
+      reasonList.innerHTML = "";
+
+      if(arr.length === 0){
+        const empty = document.createElement("div");
+        empty.className = "noteBox";
+        empty.textContent = "No reasons added yet… which means you get to make this page even more ‘you’. 💗";
+        reasonList.appendChild(empty);
+        return;
+      }
+
+      arr.forEach((text, idx)=>{
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <div class="itemText">• ${escapeHtml(text)}</div>
+          <button class="x" aria-label="remove" onclick="removeReason(${idx})">✕</button>
+        `;
+        reasonList.appendChild(div);
+      });
+    }
+
+    function addReason(){
+      const v = (reasonInput.value || "").trim();
+      if(!v){
+        reasonInput.placeholder = "Type something first 🙂";
+        return;
+      }
+      const arr = getReasons();
+      arr.unshift(v);
+      setReasons(arr);
+      reasonInput.value = "";
+      renderReasons();
+    }
+
+    function removeReason(i){
+      const arr = getReasons();
+      arr.splice(i,1);
+      setReasons(arr);
+      renderReasons();
+    }
+
+    function addPreset(){
+      const preset = [
+        "the way you make me feel understood",
+        "your laugh (it’s unfair how good it is)",
+        "your care — you love with actions",
+        "how you’re beautiful in every mood",
+        "how being with you feels like peace"
+      ];
+      const arr = getReasons();
+      preset.reverse().forEach(x=>arr.unshift(x));
+      setReasons(arr);
+      renderReasons();
+    }
+
+    function loadReasons(){ renderReasons(); }
+
+    // enter key adds
+    reasonInput.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter"){ addReason(); }
+    });
+
+    // ---- promise meter
+    let meter = Number(localStorage.getItem("nakshu_meter") || "0");
+    const fill = document.getElementById("fill");
+    const meterMsg = document.getElementById("meterMsg");
+    const cert = document.getElementById("certificate");
+
+    function paintMeter(){
+      fill.style.width = meter + "%";
+      if(meter < 25) meterMsg.textContent = `Currently: ${meter}% (warm-up 😌)`;
+      else if(meter < 60) meterMsg.textContent = `Currently: ${meter}% (okayyy… keep going 💖)`;
+      else if(meter < 95) meterMsg.textContent = `Currently: ${meter}% (almost there 👀✨)`;
+      else meterMsg.textContent = `Currently: ${meter}% (one more push!!! 💘)`;
+
+      if(meter >= 100){
+        cert.classList.remove("hidden");
+        meterMsg.textContent = "Promise Meter: 100% ✅ Certificate unlocked 🎖️";
+      }
+    }
+    paintMeter();
+
+    function tapHeart(){
+      meter = Math.min(100, meter + 7 + Math.floor(Math.random()*7));
+      localStorage.setItem("nakshu_meter", String(meter));
+      paintMeter();
+      // tiny celebration when close
+      if(meter >= 100) confettiBoom();
+    }
+
+    // ---- confetti (white confetti, clean)
+    function confettiBoom(){
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d");
+      canvas.style.display = "block";
+
+      const DPR = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.floor(window.innerWidth * DPR);
+      canvas.height = Math.floor(window.innerHeight * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+      const pieces = [];
+      const count = 170;
+
+      for(let i=0;i<count;i++){
+        pieces.push({
+          x: Math.random()*window.innerWidth,
+          y: -20 - Math.random()*window.innerHeight*0.25,
+          r: 3 + Math.random()*6,
+          vx: -2 + Math.random()*4,
+          vy: 3 + Math.random()*5,
+          rot: Math.random()*Math.PI,
+          vr: -0.2 + Math.random()*0.4,
+          a: 0.9
+        });
+      }
+
+      let frames = 0;
+      function draw(){
+        frames++;
+        ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+
+        for(const p of pieces){
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vr;
+          p.vy += 0.02;
+          p.a -= 0.004;
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.a);
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = "rgba(255,255,255,0.85)";
+          ctx.fillRect(-p.r, -p.r, p.r*2, p.r*1.2);
+          ctx.restore();
+        }
+
+        if(frames < 220){
+          requestAnimationFrame(draw);
+        } else {
+          canvas.style.display = "none";
+        }
+      }
+      draw();
+    }
+
+    window.addEventListener("resize", ()=>{
+      const canvas = document.getElementById("confetti");
+      if(canvas.style.display === "block") confettiBoom();
+    });
+
+    // ---- helpers
+    function escapeHtml(s){
+      return s.replace(/[&<>"']/g, (c)=>({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[c]));
+    }
+  </script>
+</body>
+</html>
